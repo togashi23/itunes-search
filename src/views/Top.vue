@@ -15,7 +15,20 @@
       </div>
 
       <!-- 結果表示 -->
-      <result-cards-component :itunesItem="itunesItem" v-if="!loading && total"></result-cards-component>
+      <div class="d-flex justify-content-end mb-3">
+        <div class="btn-group btn-group-toggle">
+          <label class="btn btn-outline-primary" :class="[ viewType === 'grid' ? 'active' : '' ]" @click="setView('grid')">
+            <font-awesome-icon icon="th-large"/>
+          </label>
+          <label class="btn btn-outline-primary" :class="[ viewType === 'list' ? 'active' : '' ]" @click="setView('list')">
+            <font-awesome-icon icon="list"/>
+          </label>
+        </div>
+      </div>
+
+      <result-cards-component :itunesItem="itunesItem" v-if="!loading && total && viewType === 'grid'"></result-cards-component>
+      <result-lists-component :itunesItem="itunesItem" v-else-if="!loading && total && viewType === 'list'"></result-lists-component>
+
       <result-none-component v-else-if="!loading"></result-none-component>
       <loading-component v-if="loading"></loading-component>
     </div>
@@ -28,17 +41,21 @@ import Header from '@/components/Header.vue';
 import SearchCountry from '@/components/SearchCountry.vue';
 import SearchTerm from '@/components/SearchTerm.vue';
 import ResultCards from '@/components/ResultCards.vue';
+import ResultLists from '@/components/ResultLists.vue';
 import ResultNone from '@/components/ResultNone.vue';
 import Loading from '@/components/Loading.vue';
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
 
 export default {
   name: 'Top',
   components: {
+    FontAwesomeIcon,
     'header-component': Header,
     'search-countly-component': SearchCountry,
     'search-term-component': SearchTerm,
     'result-none-component': ResultNone,
     'result-cards-component': ResultCards,
+    'result-lists-component': ResultLists,
     'loading-component': Loading
   },
   data: function() {
@@ -48,6 +65,7 @@ export default {
       country: 'jp',
       term: this.$route.query.term,
       loading: false,
+      viewType: 'grid',
       itunesItem: []
     };
   },
@@ -91,6 +109,12 @@ export default {
      */
     setTerm(newTerm) {
       this.term = newTerm;
+    },
+    /**
+     * 結果表示タイプを設定
+     */
+    setView(view) {
+      this.viewType = view;
     }
   },
   computed: {
