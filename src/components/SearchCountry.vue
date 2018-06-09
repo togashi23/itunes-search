@@ -12,14 +12,8 @@
 <script>
 export default {
   name: 'SearchCountry',
-  props: {
-    parentCountry: {
-      type: String
-    }
-  },
   data: function() {
     return {
-      country: this.parentCountry,
       countlyList: [
         {
           value: 'us',
@@ -644,9 +638,14 @@ export default {
       ]
     };
   },
-  watch: {
-    country: function() {
-      this.$emit('set-country', this.country);
+  computed: {
+    country: {
+      get() {
+        return this.$store.state.search.country;
+      },
+      set(value) {
+        this.$store.commit('search/setCountry', value);
+      }
     }
   }
 };

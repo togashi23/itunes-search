@@ -8,17 +8,17 @@
 
 <script>
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Header',
   components: {
     FontAwesomeIcon
   },
-  props: {
-    total: {
-      type: Number,
-      default: 0
-    }
+  computed: {
+    ...mapGetters({
+      total: 'search/total'
+    })
   }
 };
 </script>

@@ -26,14 +26,10 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'ResultCards',
-  props: {
-    itunesItem: {
-      type: Array,
-      default: []
-    }
-  },
   methods: {
     /**
      * 任意のサイズのアートワークURLを生成
@@ -52,6 +48,11 @@ export default {
     hideLoading: event => {
       event.target.previousElementSibling.remove();
     }
+  },
+  computed: {
+    ...mapState({
+      itunesItem: state => state.search.itunesItem
+    })
   }
 };
 </script>
