@@ -14,8 +14,8 @@ Vue.config.productionTip = false;
 
 // フィルタ
 Object.keys(filters).forEach(key => {
-  Vue.filter(key, filters[key])
-})
+  Vue.filter(key, filters[key]);
+});
 
 /* eslint-disable no-new */
 new Vue({
