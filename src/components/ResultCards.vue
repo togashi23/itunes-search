@@ -3,7 +3,8 @@
     <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in itunesItem" :key="item.index">
       <div class="card">
         <a :href="artWorkUrl(item.artworkUrl100, 'full')" target="_blank">
-          <img class="card-img-top" :src="artWorkUrl(item.artworkUrl100, '500x500')" alt="artwork">
+          <img class="card-img-top" src="@/assets/loading500x500.png">
+          <img class="card-img-top" :src="artWorkUrl(item.artworkUrl100, '500x500')" @load="hideLoading" alt="artwork">
         </a>
         <div class="card-body">
           <h5 class="card-title">{{ item.collectionName }}</h5>
@@ -44,6 +45,12 @@ export default {
     artWorkUrl: function(url, size) {
       if (size === 'full') size = '100000x100000-999';
       return url.replace(/100x100.*\.jpg/g, size + '.jpg');
+    },
+    /**
+     * 画像のロードが完了したらダミー画像を除去
+     */
+    hideLoading: event => {
+      event.target.previousElementSibling.remove();
     }
   }
 };
