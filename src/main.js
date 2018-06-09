@@ -5,6 +5,11 @@ import App from './App';
 import router from './router';
 import * as filters from './util/filters';
 
+import solid from '@fortawesome/fontawesome-free-solid';
+import brands from '@fortawesome/fontawesome-free-brands';
+import fontawesome from '@fortawesome/fontawesome';
+fontawesome.library.add(solid, brands);
+
 Vue.config.productionTip = false;
 
 // フィルタ

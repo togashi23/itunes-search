@@ -1,14 +1,19 @@
 <template>
   <nav class="navbar navbar-dark bg-primary justify-content-between">
     <a class="navbar-brand" href="#">
-      <i class="fab fa-itunes fa-fw"></i>iTunes Search</a>
+      <font-awesome-icon :icon="['fab', 'itunes']" /> iTunes Search</a>
     <span class="navbar-text text-white" v-if="total">{{ total|number-format }}件</span>
   </nav>
 </template>
 
 <script>
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
+
 export default {
   name: 'Header',
+  components: {
+    FontAwesomeIcon
+  },
   props: {
     total: {
       type: Number,
