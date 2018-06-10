@@ -1,7 +1,8 @@
 <template>
   <nav class="navbar navbar-dark bg-primary justify-content-between">
-    <a class="navbar-brand" href="#">
-      <font-awesome-icon :icon="['fab', 'itunes']" /> iTunes Search</a>
+    <router-link :to="'/'" class="navbar-brand">
+      <font-awesome-icon :icon="['fab', 'itunes']" /> iTunes Search
+    </router-link>
     <span class="navbar-text text-white" v-if="total">{{ total|number-format }}件</span>
   </nav>
 </template>
