@@ -7,7 +7,9 @@
           <img class="card-img-top" :src="artWorkUrl(item.artworkUrl100, '500x500')" @load="hideLoading" alt="artwork">
         </a>
         <div class="card-body">
-          <h5 class="card-title">{{ item.collectionName }}</h5>
+          <h5 class="card-title">
+            <router-link :to="'/album/' + item.collectionId">{{ item.collectionName }}</router-link>
+          </h5>
           <p class="card-text">{{ item.artistName }}</p>
         </div>
         <ul class="list-group list-group-flush">
@@ -26,14 +28,10 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'ResultCards',
-  props: {
-    itunesItem: {
-      type: Array,
-      default: []
-    }
-  },
   methods: {
     /**
      * 任意のサイズのアートワークURLを生成
@@ -52,6 +50,11 @@ export default {
     hideLoading: event => {
       event.target.previousElementSibling.remove();
     }
+  },
+  computed: {
+    ...mapState({
+      itunesItem: state => state.search.itunesItem
+    })
   }
 };
 </script>

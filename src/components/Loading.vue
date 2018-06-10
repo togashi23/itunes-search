@@ -17,6 +17,8 @@ export default {
 <style scoped>
 .loading {
   margin-top: 10em;
+  margin-left: 1em;
+  margin-right: 1em;
   text-align: center;
 }
 </style>

@@ -10,24 +10,19 @@
 <script>
 export default {
   name: 'SearchTerm',
-  props: {
-    parentTerm: {
-      type: String
-    }
-  },
-  data: function() {
-    return {
-      term: this.parentTerm
-    };
-  },
   methods: {
     search: function() {
       this.$emit('search');
     }
   },
-  watch: {
-    term: function() {
-      this.$emit('set-term', this.term);
+  computed: {
+    term: {
+      get() {
+        return this.$store.state.search.term;
+      },
+      set(value) {
+        this.$store.commit('search/setTerm', value);
+      }
     }
   }
 };

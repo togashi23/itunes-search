@@ -9,7 +9,9 @@
       </div>
 
       <div>
-        <h5>{{ item.collectionName }}</h5>
+        <h5>
+          <router-link :to="'/album/' + item.collectionId">{{ item.collectionName }}</router-link>
+        </h5>
         <p>{{ item.artistName }}</p>
         <p>{{ item.primaryGenreName }} - {{ item.releaseDate|date-format }}</p>
         <a :href="item.collectionViewUrl" target="_blank">iTunes Storeで開く</a>
@@ -19,14 +21,10 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'ResultLists',
-  props: {
-    itunesItem: {
-      type: Array,
-      default: []
-    }
-  },
   methods: {
     /**
      * 任意のサイズのアートワークURLを生成
@@ -45,6 +43,11 @@ export default {
     hideLoading: event => {
       event.target.previousElementSibling.remove();
     }
+  },
+  computed: {
+    ...mapState({
+      itunesItem: state => state.search.itunesItem
+    })
   }
 };
 </script>
