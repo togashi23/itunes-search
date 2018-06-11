@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Top from '@/views/Top'
-import Album from '@/views/Album'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Top from '@/views/Top';
+import Album from '@/views/Album';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   // mode: 'history',
@@ -20,4 +20,4 @@ export default new Router({
       component: Album
     }
   ]
-})
+});
