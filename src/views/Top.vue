@@ -70,7 +70,7 @@ export default {
     /**
      * 結果表示タイプを設定
      *
-     * @param {String} view 表示タイプ
+     * @param {string} view 表示タイプ
      */
     setView(view) {
       this.$store.commit('state/setViewType', view);

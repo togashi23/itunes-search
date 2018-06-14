@@ -14,7 +14,7 @@ export default {
     /**
      * 検索結果の件数を算出
      *
-     * @param {String} state Vuexの状態
+     * @param {object} state Vuexの状態
      * @return {number} 検索結果の件数
      */
     total: function(state) {
@@ -25,8 +25,8 @@ export default {
     /**
      * ストアのリージョンを設定
      *
-     * @param {String} state Vuexの状態
-     * @param {String} country リージョン
+     * @param {object} state Vuexの状態
+     * @param {string} country リージョン
      */
     setCountry(state, country) {
       state.country = country;
@@ -34,12 +34,18 @@ export default {
     /**
      * 検索クエリを設定
      *
-     * @param {String} state Vuexの状態
-     * @param {String} term 検索クエリ
+     * @param {object} state Vuexの状態
+     * @param {string} term 検索クエリ
      */
     setTerm(state, term) {
       state.term = term;
     },
+    /**
+     * アルバムリストを設定
+     *
+     * @param {object} state Vuexの状態
+     * @param {Array} value アルバムリスト
+     */
     setItunesItem(state, value) {
       state.itunesItem = value;
     },
@@ -82,6 +88,9 @@ export default {
           console.error(error);
         });
     },
+    /**
+     * アルバムを検索
+     */
     searchAlbum() {
       this.commit('state/setLoading', true);
       itunesApi
