@@ -36,14 +36,12 @@
 </template>
 
 <script>
-import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
 import Loading from '@/components/Loading.vue';
 import { mapState } from 'vuex';
 
 export default {
   name: 'Album',
   components: {
-    FontAwesomeIcon,
     'loading-component': Loading
   },
   mounted: function() {
@@ -83,4 +81,3 @@ export default {
 
 <style>
 </style>
-

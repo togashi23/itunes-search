@@ -34,5 +34,6 @@ const success = response => {
 };
 
 const failed = error => {
-  return Promise.reject('取得に失敗しました');
+  console.error(error.message);
+  return Promise.reject(new Error('取得に失敗しました'));
 };

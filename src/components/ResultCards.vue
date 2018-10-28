@@ -64,4 +64,3 @@ export default {
   margin-bottom: 1em;
 }
 </style>
-
