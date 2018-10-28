@@ -57,5 +57,3 @@ export default {
   flex-basis: 120px;
 }
 </style>
-
-</script>
