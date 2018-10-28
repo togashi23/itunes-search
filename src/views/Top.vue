@@ -15,10 +15,10 @@
       <div class="d-flex justify-content-end mb-3">
         <div class="btn-group btn-group-toggle">
           <label class="btn btn-outline-primary" :class="[ viewType === 'grid' ? 'active' : '' ]" @click="setView('grid')">
-            <font-awesome-icon icon="th-large" />
+            <i class="fas fa-th-large"></i>
           </label>
           <label class="btn btn-outline-primary" :class="[ viewType === 'list' ? 'active' : '' ]" @click="setView('list')">
-            <font-awesome-icon icon="list" />
+            <i class="fas fa-list"></i>
           </label>
         </div>
       </div>
@@ -39,13 +39,11 @@ import ResultCards from '@/components/ResultCards.vue';
 import ResultLists from '@/components/ResultLists.vue';
 import ResultNone from '@/components/ResultNone.vue';
 import Loading from '@/components/Loading.vue';
-import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
 import { mapState, mapGetters } from 'vuex';
 
 export default {
   name: 'Top',
   components: {
-    FontAwesomeIcon,
     'search-countly-component': SearchCountry,
     'search-term-component': SearchTerm,
     'result-none-component': ResultNone,
