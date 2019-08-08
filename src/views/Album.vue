@@ -17,6 +17,7 @@
           <div class="mb-2"> {{ selectAlbum.artistName }}</div>
           <div class="mb-2">{{ selectAlbum.primaryGenreName }}</div>
           <div class="mb-2">{{ selectAlbum.releaseDate|date-format }}</div>
+          <div class="mb-2"><button class="btn btn-primary" @click="exportFile">Export</button></div>
         </div>
       </div>
 
@@ -59,6 +60,7 @@ export default {
      * @return {string} アートワークのURL
      */
     artWorkUrl: function(url, size) {
+      if (url === undefined) return '';
       if (size === 'full') size = '100000x100000-999';
       return url.replace(/100x100.*\.jpg/g, size + '.jpg');
     },
@@ -67,6 +69,33 @@ export default {
      */
     hideLoading: event => {
       event.target.previousElementSibling.remove();
+    },
+    /**
+     * トラック情報をファイルに書き出し
+     * `%discnumber%;%track%;%title%;%artist%`
+     */
+    exportFile: function() {
+      const delimiter = ';';
+      const itemList = this.albumItem.map(item => {
+        const row = [
+          item.discNumber + '/' + item.discCount,
+          item.trackNumber + '/' + item.trackCount,
+          item.trackName,
+          item.artistName
+        ];
+        return row.join(delimiter);
+      });
+      const text = itemList.join('\n');
+
+      const bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
+      const blob = new Blob([bom, text], { type: 'text/csv' });
+      const url = (window.URL || window.webkitURL).createObjectURL(blob);
+      const link = document.createElement('a');
+      link.download = 'export.txt';
+      link.href = url;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
   },
   computed: {
