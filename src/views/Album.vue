@@ -59,6 +59,7 @@ export default {
      * @return {string} アートワークのURL
      */
     artWorkUrl: function(url, size) {
+      if (url === undefined) return '';
       if (size === 'full') size = '100000x100000-999';
       return url.replace(/100x100.*\.jpg/g, size + '.jpg');
     },
