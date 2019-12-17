@@ -12,7 +12,7 @@ export default {
     return instance
       .get(apiUrlAlbum, {
         params: {
-          limit: 50,
+          limit: 200,
           entity: 'album',
           hash: Math.random(),
           ...params
