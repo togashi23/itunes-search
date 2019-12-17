@@ -14,6 +14,7 @@ export default {
         params: {
           limit: 50,
           entity: 'album',
+          hash: Math.random(),
           ...params
         }
       })
@@ -26,6 +27,7 @@ export default {
         params: {
           limit: 200,
           entity: 'song',
+          hash: Math.random(),
           ...params
         }
       })
