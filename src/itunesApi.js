@@ -1,14 +1,20 @@
 import axios from 'axios';
-const apiUrlAlbum = 'https://itunes.apple.com/search';
-const apiUrlSongs = 'https://itunes.apple.com/lookup';
+const apiUrlAlbum = 'search';
+const apiUrlSongs = 'lookup';
+
+const instance = axios.create({
+  baseURL: 'https://itunes.apple.com/',
+  timeout: 1000,
+});
 
 export default {
   getAlbums: params => {
-    return axios
+    return instance
       .get(apiUrlAlbum, {
         params: {
-          limit: 50,
+          limit: 200,
           entity: 'album',
+          hash: Math.random(),
           ...params
         }
       })
@@ -16,11 +22,12 @@ export default {
       .catch(failed);
   },
   getSongs: params => {
-    return axios
+    return instance
       .get(apiUrlSongs, {
         params: {
           limit: 200,
           entity: 'song',
+          hash: Math.random(),
           ...params
         }
       })
