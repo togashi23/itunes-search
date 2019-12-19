@@ -1,5 +1,8 @@
 import itunesApi from '@/itunesApi.js';
 
+/** 最大取得件数 */
+const LIMIT = 200;
+
 export default {
   namespaced: true,
   state: {
@@ -8,7 +11,8 @@ export default {
     itunesItem: [],
     collectionId: 0,
     selectAlbum: [],
-    albumItem: []
+    albumItem: [],
+    isMore: false
   },
   getters: {
     /**
@@ -67,22 +71,66 @@ export default {
     setAlbumItem(state, { selectAlbum, albumItem }) {
       state.selectAlbum = selectAlbum;
       state.albumItem = albumItem;
+    },
+    /**
+     * moreが存在するかを設定
+     * @param {object} state Vuexの状態
+     * @param {bool} more 次も存在するか
+     */
+    setIsMore(state, more) {
+      state.isMore = Boolean(more);
     }
   },
   actions: {
     /**
      * 検索メソッド
      */
-    search() {
-      this.commit('state/setLoading', true);
+    search(context) {
+      context.commit('state/setLoading', true, { root: true });
       itunesApi
-        .getAlbums({
-          term: this.state.search.term,
-          country: this.state.search.country
-        })
+        .getAlbums(
+          {
+            term: context.state.term,
+            country: context.state.country
+          },
+          LIMIT
+        )
         .then(response => {
-          this.commit('search/setItunesItem', response.results);
-          this.commit('state/setLoading', false);
+          if (response.resultCount === LIMIT) {
+            context.commit('setIsMore', true);
+          } else {
+            context.commit('setIsMore', false);
+          }
+          context.commit('setItunesItem', response.results);
+          context.commit('state/setLoading', false, { root: true });
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+    /**
+     * 追加検索
+     */
+    moreSearch(context) {
+      itunesApi
+        .getAlbums(
+          {
+            term: context.state.term,
+            country: context.state.country
+          },
+          LIMIT,
+          context.getters.total
+        )
+        .then(response => {
+          if (response.resultCount === LIMIT) {
+            context.commit('setIsMore', true);
+          } else {
+            context.commit('setIsMore', false);
+          }
+          context.commit('setItunesItem', [
+            ...context.state.itunesItem,
+            ...response.results
+          ]);
         })
         .catch(error => {
           console.error(error);
@@ -91,12 +139,12 @@ export default {
     /**
      * アルバムを検索
      */
-    searchAlbum() {
-      this.commit('state/setLoading', true);
+    searchAlbum(context) {
+      context.commit('state/setLoading', true, { root: true });
       itunesApi
         .getSongs({
-          id: this.state.search.collectionId,
-          country: this.state.search.country
+          id: context.state.collectionId,
+          country: context.state.country
         })
         .then(response => {
           let selectAlbum = [];
@@ -109,8 +157,8 @@ export default {
               albumItem.push(item);
             }
           });
-          this.commit('search/setAlbumItem', { selectAlbum, albumItem });
-          this.commit('state/setLoading', false);
+          context.commit('setAlbumItem', { selectAlbum, albumItem });
+          context.commit('state/setLoading', false, { root: true });
         })
         .catch(error => {
           console.error(error);

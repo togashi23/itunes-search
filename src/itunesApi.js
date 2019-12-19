@@ -4,16 +4,17 @@ const apiUrlSongs = 'lookup';
 
 const instance = axios.create({
   baseURL: 'https://itunes.apple.com/',
-  timeout: 1000,
+  timeout: 1000
 });
 
 export default {
-  getAlbums: params => {
+  getAlbums: (params, limit, offset = 0) => {
     return instance
       .get(apiUrlAlbum, {
         params: {
-          limit: 200,
+          limit: limit,
           entity: 'album',
+          offset: offset,
           hash: Math.random(),
           ...params
         }
