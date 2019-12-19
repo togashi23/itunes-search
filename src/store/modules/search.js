@@ -73,16 +73,16 @@ export default {
     /**
      * 検索メソッド
      */
-    search() {
-      this.commit('state/setLoading', true);
+    search(context) {
+      context.commit('state/setLoading', true, { root: true });
       itunesApi
         .getAlbums({
-          term: this.state.search.term,
-          country: this.state.search.country
+          term: context.state.term,
+          country: context.state.country
         })
         .then(response => {
-          this.commit('search/setItunesItem', response.results);
-          this.commit('state/setLoading', false);
+          context.commit('setItunesItem', response.results);
+          context.commit('state/setLoading', false, { root: true });
         })
         .catch(error => {
           console.error(error);
@@ -91,12 +91,12 @@ export default {
     /**
      * アルバムを検索
      */
-    searchAlbum() {
-      this.commit('state/setLoading', true);
+    searchAlbum(context) {
+      context.commit('state/setLoading', true, { root: true });
       itunesApi
         .getSongs({
-          id: this.state.search.collectionId,
-          country: this.state.search.country
+          id: context.state.collectionId,
+          country: context.state.country
         })
         .then(response => {
           let selectAlbum = [];
@@ -109,8 +109,8 @@ export default {
               albumItem.push(item);
             }
           });
-          this.commit('search/setAlbumItem', { selectAlbum, albumItem });
-          this.commit('state/setLoading', false);
+          context.commit('setAlbumItem', { selectAlbum, albumItem });
+          context.commit('state/setLoading', false, { root: true });
         })
         .catch(error => {
           console.error(error);
