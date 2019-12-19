@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <loading-component v-if="loading"></loading-component>
+    <loading-component v-if="loading" />
 
     <div v-else>
       <!-- アルバム情報 -->

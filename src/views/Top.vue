@@ -4,14 +4,14 @@
       <!-- 検索部分 -->
       <div class="row">
         <div class="col-xl-12 col-md-4">
-          <search-countly-component></search-countly-component>
+          <search-countly-component />
         </div>
         <div class="col-xl-12 col-md-8">
-          <search-term-component @search="search"></search-term-component>
+          <search-term-component @search="search" />
         </div>
       </div>
 
-      <!-- 結果表示 -->
+      <!-- 表示方法選択 -->
       <div class="d-flex justify-content-end mb-3">
         <div class="btn-group btn-group-toggle">
           <label class="btn btn-outline-primary" :class="[ viewType === 'grid' ? 'active' : '' ]" @click="setView('grid')">
@@ -23,11 +23,19 @@
         </div>
       </div>
 
-      <result-cards-component v-if="!loading && total && viewType === 'grid'"></result-cards-component>
-      <result-lists-component v-else-if="!loading && total && viewType === 'list'"></result-lists-component>
-
-      <result-none-component v-else-if="!loading"></result-none-component>
-      <loading-component v-if="loading"></loading-component>
+      <!-- 結果表示 -->
+      <template v-if="loading">
+        <!-- ロード中 -->
+        <loading-component />
+      </template>
+      <template v-else>
+        <!-- カード表示 -->
+        <result-cards-component v-if="!loading && total && viewType === 'grid'" />
+        <!-- リスト表示 -->
+        <result-lists-component v-else-if="!loading && total && viewType === 'list'" />
+        <!-- 結果0件 -->
+        <result-none-component v-else />
+      </template>
     </div>
   </div>
 </template>
