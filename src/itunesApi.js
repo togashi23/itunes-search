@@ -8,12 +8,13 @@ const instance = axios.create({
 });
 
 export default {
-  getAlbums: params => {
+  getAlbums: (params, limit, offset = 0) => {
     return instance
       .get(apiUrlAlbum, {
         params: {
-          limit: 200,
+          limit: limit,
           entity: 'album',
+          offset: offset,
           hash: Math.random(),
           ...params
         }

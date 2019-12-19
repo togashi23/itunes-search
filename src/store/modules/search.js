@@ -1,5 +1,8 @@
 import itunesApi from '@/itunesApi.js';
 
+/** 最大取得件数 */
+const LIMIT = 200;
+
 export default {
   namespaced: true,
   state: {
@@ -8,7 +11,8 @@ export default {
     itunesItem: [],
     collectionId: 0,
     selectAlbum: [],
-    albumItem: []
+    albumItem: [],
+    isMore: false
   },
   getters: {
     /**
@@ -67,6 +71,14 @@ export default {
     setAlbumItem(state, { selectAlbum, albumItem }) {
       state.selectAlbum = selectAlbum;
       state.albumItem = albumItem;
+    },
+    /**
+     * moreが存在するかを設定
+     * @param {object} state Vuexの状態
+     * @param {bool} more 次も存在するか
+     */
+    setIsMore(state, more) {
+      state.isMore = Boolean(more);
     }
   },
   actions: {
@@ -76,13 +88,49 @@ export default {
     search(context) {
       context.commit('state/setLoading', true, { root: true });
       itunesApi
-        .getAlbums({
-          term: context.state.term,
-          country: context.state.country
-        })
+        .getAlbums(
+          {
+            term: context.state.term,
+            country: context.state.country
+          },
+          LIMIT
+        )
         .then(response => {
+          if (response.resultCount === LIMIT) {
+            context.commit('setIsMore', true);
+          } else {
+            context.commit('setIsMore', false);
+          }
           context.commit('setItunesItem', response.results);
           context.commit('state/setLoading', false, { root: true });
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+    /**
+     * 追加検索
+     */
+    moreSearch(context) {
+      itunesApi
+        .getAlbums(
+          {
+            term: context.state.term,
+            country: context.state.country
+          },
+          LIMIT,
+          context.getters.total
+        )
+        .then(response => {
+          if (response.resultCount === LIMIT) {
+            context.commit('setIsMore', true);
+          } else {
+            context.commit('setIsMore', false);
+          }
+          context.commit('setItunesItem', [
+            ...context.state.itunesItem,
+            ...response.results
+          ]);
         })
         .catch(error => {
           console.error(error);

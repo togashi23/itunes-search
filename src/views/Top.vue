@@ -35,6 +35,8 @@
         <result-lists-component v-else-if="!loading && total && viewType === 'list'" />
         <!-- 結果0件 -->
         <result-none-component v-else />
+        <!-- 追加検索ボタン -->
+        <button v-show="isMore" type="button" class="btn btn-outline-primary btn-lg btn-block mb-3" @click="moreSearch">more</button>
       </template>
     </div>
   </div>
@@ -74,6 +76,12 @@ export default {
       this.$store.dispatch('search/search');
     },
     /**
+     * 追加検索
+     */
+    moreSearch() {
+      this.$store.dispatch('search/moreSearch');
+    },
+    /**
      * 結果表示タイプを設定
      *
      * @param {string} view 表示タイプ
@@ -86,7 +94,8 @@ export default {
     ...mapState({
       viewType: state => state.state.viewType,
       loading: state => state.state.loading,
-      itunesItem: state => state.search.itunesItem
+      itunesItem: state => state.search.itunesItem,
+      isMore: state => state.search.isMore
     }),
     ...mapGetters({
       total: 'search/total'
