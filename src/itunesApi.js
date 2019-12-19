@@ -4,7 +4,7 @@ const apiUrlSongs = 'lookup';
 
 const instance = axios.create({
   baseURL: 'https://itunes.apple.com/',
-  timeout: 1000,
+  timeout: 1000
 });
 
 export default {
