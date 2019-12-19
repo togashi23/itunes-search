@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <!-- ナビバー -->
-    <header-component></header-component>
+    <header-component />
 
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
