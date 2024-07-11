@@ -18,7 +18,7 @@
           <router-link :to="'/album/' + item.collectionId">{{ item.collectionName }}</router-link>
         </h5>
         <p>{{ item.artistName }}</p>
-        <p>{{ item.primaryGenreName }} - {{ item.releaseDate | (date - format) }}</p>
+        <p>{{ item.primaryGenreName }} - {{ item.releaseDate | dateFormat }}</p>
         <a :href="item.collectionViewUrl" target="_blank">iTunes Storeで開く</a>
       </div>
     </li>

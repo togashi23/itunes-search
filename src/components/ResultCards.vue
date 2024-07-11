@@ -19,7 +19,7 @@
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">{{ item.primaryGenreName }}</li>
-          <li class="list-group-item">{{ item.releaseDate | (date - format) }}</li>
+          <li class="list-group-item">{{ item.releaseDate | dateFormat }}</li>
         </ul>
         <div class="card-body">
           <a :href="item.collectionViewUrl" target="_blank" class="card-link">iTunes Storeで開く</a>

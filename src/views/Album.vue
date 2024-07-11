@@ -21,7 +21,7 @@
           <h4>{{ selectAlbum.collectionName }}</h4>
           <div class="mb-2">{{ selectAlbum.artistName }}</div>
           <div class="mb-2">{{ selectAlbum.primaryGenreName }}</div>
-          <div class="mb-2">{{ selectAlbum.releaseDate | (date - format) }}</div>
+          <div class="mb-2">{{ selectAlbum.releaseDate | dateFormat }}</div>
           <div class="mb-2"><button class="btn btn-primary" @click="exportFile">Export</button></div>
         </div>
       </div>
