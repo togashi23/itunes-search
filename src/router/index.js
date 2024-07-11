@@ -1,7 +1,7 @@
-import Vue from 'vue';
+import Vue from 'vue/dist/vue.esm';
 import Router from 'vue-router';
-import Top from '@/views/Top';
-import Album from '@/views/Album';
+import Top from '@/views/Top.vue';
+import Album from '@/views/Album.vue';
 
 Vue.use(Router);
 
