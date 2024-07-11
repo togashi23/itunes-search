@@ -11,8 +11,8 @@
             <img
               class="rounded img-fluid mx-auto d-block"
               :src="artWorkUrl(selectAlbum.artworkUrl100, '200x200')"
-              @load="hideLoading"
               alt="artwork"
+              @load="hideLoading"
             />
           </a>
         </div>
@@ -28,7 +28,7 @@
 
       <!-- トラック情報 -->
       <ul class="list-group list-group-flush mt-3">
-        <li class="list-group-item d-flex justify-content-between" v-for="item in albumItem" :key="item.index">
+        <li v-for="item in albumItem" :key="item.index" class="list-group-item d-flex justify-content-between">
           <div>
             <span class="text-muted">{{ item.trackNumber }}.</span>
             {{ item.trackName }}

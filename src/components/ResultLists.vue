@@ -1,14 +1,14 @@
 <template>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item d-flex justify-content-start" v-for="item in itunesItem" :key="item.index">
+    <li v-for="item in itunesItem" :key="item.index" class="list-group-item d-flex justify-content-start">
       <div class="cover-img">
         <a :href="artWorkUrl(item.artworkUrl100, 'full')" target="_blank">
           <img class="rounded float-left" src="@/assets/loading100x100.png" />
           <img
             class="rounded float-left"
             :src="artWorkUrl(item.artworkUrl100, '100x100')"
-            @load="hideLoading"
             alt="artwork"
+            @load="hideLoading"
           />
         </a>
       </div>

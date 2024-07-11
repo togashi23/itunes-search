@@ -3,8 +3,8 @@
     <div class="input-group-prepend">
       <label class="input-group-text" for="inputGroupSelect01">Country</label>
     </div>
-    <select class="custom-select" v-model="country">
-      <option v-for="countly in countlyList" :value="countly.value" :key="countly.value">{{ countly.name }}</option>
+    <select v-model="country" class="custom-select">
+      <option v-for="countly in countlyList" :key="countly.value" :value="countly.value">{{ countly.name }}</option>
     </select>
   </div>
 </template>

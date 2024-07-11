@@ -12,9 +12,9 @@ export default {
     return instance
       .get(apiUrlAlbum, {
         params: {
-          limit: limit,
+          limit,
           entity: 'album',
-          offset: offset,
+          offset,
           hash: Math.random(),
           ...params,
         },

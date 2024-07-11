@@ -145,7 +145,7 @@ export default {
         })
         .then((response) => {
           let selectAlbum = [];
-          let albumItem = [];
+          const albumItem = [];
 
           response.results.forEach((item) => {
             if (item.wrapperType === 'collection') {

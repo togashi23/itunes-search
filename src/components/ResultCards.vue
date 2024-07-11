@@ -1,14 +1,14 @@
 <template>
   <div class="row">
-    <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="item in itunesItem" :key="item.index">
+    <div v-for="item in itunesItem" :key="item.index" class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
       <div class="card">
         <a :href="artWorkUrl(item.artworkUrl100, 'full')" target="_blank">
           <img class="card-img-top" src="@/assets/loading500x500.png" />
           <img
             class="card-img-top"
             :src="artWorkUrl(item.artworkUrl100, '500x500')"
-            @load="hideLoading"
             alt="artwork"
+            @load="hideLoading"
           />
         </a>
         <div class="card-body">

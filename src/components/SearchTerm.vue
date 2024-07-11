@@ -1,6 +1,6 @@
 <template>
   <div class="input-group mb-3">
-    <input type="text" class="form-control" v-model="term" @keydown.13="search" v-focus />
+    <input v-model="term" v-focus type="text" class="form-control" @keydown.13="search" />
     <div class="input-group-append">
       <button class="btn btn-outline-primary" type="button" @click.prevent="search">検索</button>
     </div>
@@ -10,9 +10,11 @@
 <script>
 export default {
   name: 'SearchTerm',
-  methods: {
-    search: function () {
-      this.$emit('search');
+  directives: {
+    focus: {
+      inserted: function (el) {
+        el.focus();
+      },
     },
   },
   computed: {
@@ -25,11 +27,9 @@ export default {
       },
     },
   },
-  directives: {
-    focus: {
-      inserted: function (el) {
-        el.focus();
-      },
+  methods: {
+    search: function () {
+      this.$emit('search');
     },
   },
 };
