@@ -1,9 +1,7 @@
 <template>
   <nav class="navbar navbar-dark bg-primary justify-content-between">
-    <router-link :to="'/'" class="navbar-brand">
-      <i class="fab fa-itunes"></i> iTunes Search
-    </router-link>
-    <span class="navbar-text text-white" v-if="total">{{ total|number-format }}件</span>
+    <router-link :to="'/'" class="navbar-brand"> <i class="fab fa-itunes"></i> iTunes Search </router-link>
+    <span v-if="total" class="navbar-text text-white">{{ total | numberFormat }}件</span>
   </nav>
 </template>
 
@@ -14,9 +12,9 @@ export default {
   name: 'Header',
   computed: {
     ...mapGetters({
-      total: 'search/total'
-    })
-  }
+      total: 'search/total',
+    }),
+  },
 };
 </script>
 

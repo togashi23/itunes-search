@@ -13,8 +13,8 @@ import Header from '@/components/Header.vue';
 export default {
   name: 'App',
   components: {
-    'header-component': Header
-  }
+    'header-component': Header,
+  },
 };
 </script>
 

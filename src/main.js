@@ -15,7 +15,7 @@ import '@fortawesome/fontawesome-free/js/fontawesome.js';
 Vue.config.productionTip = false;
 
 // フィルタ
-Object.keys(filters).forEach(key => {
+Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key]);
 });
 
@@ -25,5 +25,5 @@ new Vue({
   router,
   store,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
 });
