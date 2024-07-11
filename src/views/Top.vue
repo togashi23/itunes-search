@@ -14,10 +14,18 @@
       <!-- 表示方法選択 -->
       <div class="d-flex justify-content-end mb-3">
         <div class="btn-group btn-group-toggle">
-          <label class="btn btn-outline-primary" :class="[ viewType === 'grid' ? 'active' : '' ]" @click="setView('grid')">
+          <label
+            class="btn btn-outline-primary"
+            :class="[viewType === 'grid' ? 'active' : '']"
+            @click="setView('grid')"
+          >
             <i class="fas fa-th-large"></i>
           </label>
-          <label class="btn btn-outline-primary" :class="[ viewType === 'list' ? 'active' : '' ]" @click="setView('list')">
+          <label
+            class="btn btn-outline-primary"
+            :class="[viewType === 'list' ? 'active' : '']"
+            @click="setView('list')"
+          >
             <i class="fas fa-list"></i>
           </label>
         </div>
@@ -36,7 +44,9 @@
         <!-- 結果0件 -->
         <result-none-component v-else />
         <!-- 追加検索ボタン -->
-        <button v-show="isMore" type="button" class="btn btn-outline-primary btn-lg btn-block mb-3" @click="moreSearch">more</button>
+        <button v-show="isMore" type="button" class="btn btn-outline-primary btn-lg btn-block mb-3" @click="moreSearch">
+          more
+        </button>
       </template>
     </div>
   </div>
@@ -59,9 +69,9 @@ export default {
     'result-none-component': ResultNone,
     'result-cards-component': ResultCards,
     'result-lists-component': ResultLists,
-    'loading-component': Loading
+    'loading-component': Loading,
   },
-  mounted: function() {
+  mounted: function () {
     if (this.$route.query.term !== undefined && this.$route.query.term !== '') {
       this.$store.commit('search/setTerm', this.$route.query.term);
       this.search();
@@ -88,18 +98,18 @@ export default {
      */
     setView(view) {
       this.$store.commit('state/setViewType', view);
-    }
+    },
   },
   computed: {
     ...mapState({
-      viewType: state => state.state.viewType,
-      loading: state => state.state.loading,
-      itunesItem: state => state.search.itunesItem,
-      isMore: state => state.search.isMore
+      viewType: (state) => state.state.viewType,
+      loading: (state) => state.state.loading,
+      itunesItem: (state) => state.search.itunesItem,
+      isMore: (state) => state.search.isMore,
     }),
     ...mapGetters({
-      total: 'search/total'
-    })
-  }
+      total: 'search/total',
+    }),
+  },
 };
 </script>

@@ -12,12 +12,12 @@ export default new Router({
     {
       path: '/',
       name: 'Top',
-      component: Top
+      component: Top,
     },
     {
       path: '/album/:id(\\d+)',
       name: 'Album',
-      component: Album
-    }
-  ]
+      component: Album,
+    },
+  ],
 });

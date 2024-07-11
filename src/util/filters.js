@@ -20,8 +20,6 @@ export function dateFormat(strDate) {
 export function msTimeFormat(ms) {
   let h = String(Math.floor(ms / 3600000) + 100).substring(1);
   let m = String(Math.floor((ms - h * 3600000) / 60000) + 100).substring(1);
-  let s = String(
-    Math.round((ms - h * 3600000 - m * 60000) / 1000) + 100
-  ).substring(1);
+  let s = String(Math.round((ms - h * 3600000 - m * 60000) / 1000) + 100).substring(1);
   return m + ':' + s;
 }

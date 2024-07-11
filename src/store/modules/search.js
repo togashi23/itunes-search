@@ -12,7 +12,7 @@ export default {
     collectionId: 0,
     selectAlbum: [],
     albumItem: [],
-    isMore: false
+    isMore: false,
   },
   getters: {
     /**
@@ -21,9 +21,9 @@ export default {
      * @param {object} state Vuexの状態
      * @return {number} 検索結果の件数
      */
-    total: function(state) {
+    total: function (state) {
       return state.itunesItem.length;
-    }
+    },
   },
   mutations: {
     /**
@@ -79,7 +79,7 @@ export default {
      */
     setIsMore(state, more) {
       state.isMore = Boolean(more);
-    }
+    },
   },
   actions: {
     /**
@@ -91,11 +91,11 @@ export default {
         .getAlbums(
           {
             term: context.state.term,
-            country: context.state.country
+            country: context.state.country,
           },
-          LIMIT
+          LIMIT,
         )
-        .then(response => {
+        .then((response) => {
           if (response.resultCount === LIMIT) {
             context.commit('setIsMore', true);
           } else {
@@ -104,7 +104,7 @@ export default {
           context.commit('setItunesItem', response.results);
           context.commit('state/setLoading', false, { root: true });
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error);
         });
     },
@@ -116,23 +116,20 @@ export default {
         .getAlbums(
           {
             term: context.state.term,
-            country: context.state.country
+            country: context.state.country,
           },
           LIMIT,
-          context.getters.total
+          context.getters.total,
         )
-        .then(response => {
+        .then((response) => {
           if (response.resultCount === LIMIT) {
             context.commit('setIsMore', true);
           } else {
             context.commit('setIsMore', false);
           }
-          context.commit('setItunesItem', [
-            ...context.state.itunesItem,
-            ...response.results
-          ]);
+          context.commit('setItunesItem', [...context.state.itunesItem, ...response.results]);
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error);
         });
     },
@@ -144,13 +141,13 @@ export default {
       itunesApi
         .getSongs({
           id: context.state.collectionId,
-          country: context.state.country
+          country: context.state.country,
         })
-        .then(response => {
+        .then((response) => {
           let selectAlbum = [];
           let albumItem = [];
 
-          response.results.forEach(item => {
+          response.results.forEach((item) => {
             if (item.wrapperType === 'collection') {
               selectAlbum = item;
             } else if (item.wrapperType === 'track') {
@@ -160,9 +157,9 @@ export default {
           context.commit('setAlbumItem', { selectAlbum, albumItem });
           context.commit('state/setLoading', false, { root: true });
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error);
         });
-    }
-  }
+    },
+  },
 };

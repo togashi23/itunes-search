@@ -2,7 +2,7 @@ export default {
   namespaced: true,
   state: {
     loading: false,
-    viewType: 'grid'
+    viewType: 'grid',
   },
   getters: {},
   mutations: {
@@ -23,7 +23,7 @@ export default {
      */
     setViewType(state, type) {
       state.viewType = type;
-    }
+    },
   },
-  actions: {}
+  actions: {},
 };
