@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue from 'vue/dist/vue.esm';
 import Vuex from 'vuex';
 
 import search from './modules/search';
@@ -11,7 +11,7 @@ const debug = process.env.NODE_ENV !== 'production';
 export default new Vuex.Store({
   modules: {
     search,
-    state
+    state,
   },
-  strict: debug
+  strict: debug,
 });

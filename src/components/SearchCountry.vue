@@ -3,8 +3,8 @@
     <div class="input-group-prepend">
       <label class="input-group-text" for="inputGroupSelect01">Country</label>
     </div>
-    <select class="custom-select" v-model="country">
-      <option v-for="countly in countlyList" :value="countly.value" :key="countly.value">{{ countly.name }}</option>
+    <select v-model="country" class="custom-select">
+      <option v-for="countly in countlyList" :key="countly.value" :value="countly.value">{{ countly.name }}</option>
     </select>
   </div>
 </template>
@@ -12,630 +12,630 @@
 <script>
 export default {
   name: 'SearchCountry',
-  data: function() {
+  data: function () {
     return {
       countlyList: [
         {
           value: 'us',
-          name: 'United States of America'
+          name: 'United States of America',
         },
         {
           value: 'gb',
-          name: 'United Kingdom'
+          name: 'United Kingdom',
         },
         {
           value: 'al',
-          name: 'Albania'
+          name: 'Albania',
         },
         {
           value: 'dz',
-          name: 'Algeria'
+          name: 'Algeria',
         },
         {
           value: 'ao',
-          name: 'Angola'
+          name: 'Angola',
         },
         {
           value: 'ai',
-          name: 'Anguilla'
+          name: 'Anguilla',
         },
         {
           value: 'ag',
-          name: 'Antigua and Barbuda'
+          name: 'Antigua and Barbuda',
         },
         {
           value: 'ar',
-          name: 'Argentina'
+          name: 'Argentina',
         },
         {
           value: 'am',
-          name: 'Armenia'
+          name: 'Armenia',
         },
         {
           value: 'au',
-          name: 'Australia'
+          name: 'Australia',
         },
         {
           value: 'at',
-          name: 'Austria'
+          name: 'Austria',
         },
         {
           value: 'az',
-          name: 'Azerbaijan'
+          name: 'Azerbaijan',
         },
         {
           value: 'bs',
-          name: 'Bahamas'
+          name: 'Bahamas',
         },
         {
           value: 'bh',
-          name: 'Bahrain'
+          name: 'Bahrain',
         },
         {
           value: 'bb',
-          name: 'Barbados'
+          name: 'Barbados',
         },
         {
           value: 'by',
-          name: 'Belarus'
+          name: 'Belarus',
         },
         {
           value: 'be',
-          name: 'Belgium'
+          name: 'Belgium',
         },
         {
           value: 'bz',
-          name: 'Belize'
+          name: 'Belize',
         },
         {
           value: 'bj',
-          name: 'Benin'
+          name: 'Benin',
         },
         {
           value: 'bm',
-          name: 'Bermuda'
+          name: 'Bermuda',
         },
         {
           value: 'bt',
-          name: 'Bhutan'
+          name: 'Bhutan',
         },
         {
           value: 'bo',
-          name: 'Bolivia'
+          name: 'Bolivia',
         },
         {
           value: 'bw',
-          name: 'Botswana'
+          name: 'Botswana',
         },
         {
           value: 'br',
-          name: 'Brazil'
+          name: 'Brazil',
         },
         {
           value: 'vg',
-          name: 'British Virgin Islands'
+          name: 'British Virgin Islands',
         },
         {
           value: 'bn',
-          name: 'Brunei Darussalam'
+          name: 'Brunei Darussalam',
         },
         {
           value: 'bg',
-          name: 'Bulgaria'
+          name: 'Bulgaria',
         },
         {
           value: 'bf',
-          name: 'Burkina-Faso'
+          name: 'Burkina-Faso',
         },
         {
           value: 'kh',
-          name: 'Cambodia'
+          name: 'Cambodia',
         },
         {
           value: 'ca',
-          name: 'Canada'
+          name: 'Canada',
         },
         {
           value: 'cv',
-          name: 'Cape Verde'
+          name: 'Cape Verde',
         },
         {
           value: 'ky',
-          name: 'Cayman Islands'
+          name: 'Cayman Islands',
         },
         {
           value: 'td',
-          name: 'Chad'
+          name: 'Chad',
         },
         {
           value: 'cl',
-          name: 'Chile'
+          name: 'Chile',
         },
         {
           value: 'cn',
-          name: 'China'
+          name: 'China',
         },
         {
           value: 'co',
-          name: 'Colombia'
+          name: 'Colombia',
         },
         {
           value: 'cr',
-          name: 'Costa Rica'
+          name: 'Costa Rica',
         },
         {
           value: 'hr',
-          name: 'Croatia'
+          name: 'Croatia',
         },
         {
           value: 'cy',
-          name: 'Cyprus'
+          name: 'Cyprus',
         },
         {
           value: 'cz',
-          name: 'Czech Republic'
+          name: 'Czech Republic',
         },
         {
           value: 'cg',
-          name: 'Democratic Republic of the Congo'
+          name: 'Democratic Republic of the Congo',
         },
         {
           value: 'dk',
-          name: 'Denmark'
+          name: 'Denmark',
         },
         {
           value: 'dm',
-          name: 'Dominica'
+          name: 'Dominica',
         },
         {
           value: 'do',
-          name: 'Dominican Republic'
+          name: 'Dominican Republic',
         },
         {
           value: 'ec',
-          name: 'Ecuador'
+          name: 'Ecuador',
         },
         {
           value: 'eg',
-          name: 'Egypt'
+          name: 'Egypt',
         },
         {
           value: 'sv',
-          name: 'El Salvador'
+          name: 'El Salvador',
         },
         {
           value: 'ee',
-          name: 'Estonia'
+          name: 'Estonia',
         },
         {
           value: 'fm',
-          name: 'Federated States of Micronesia'
+          name: 'Federated States of Micronesia',
         },
         {
           value: 'fj',
-          name: 'Fiji'
+          name: 'Fiji',
         },
         {
           value: 'fi',
-          name: 'Finland'
+          name: 'Finland',
         },
         {
           value: 'fr',
-          name: 'France'
+          name: 'France',
         },
         {
           value: 'gm',
-          name: 'Gambia'
+          name: 'Gambia',
         },
         {
           value: 'de',
-          name: 'Germany'
+          name: 'Germany',
         },
         {
           value: 'gh',
-          name: 'Ghana'
+          name: 'Ghana',
         },
         {
           value: 'gr',
-          name: 'Greece'
+          name: 'Greece',
         },
         {
           value: 'gd',
-          name: 'Grenada'
+          name: 'Grenada',
         },
         {
           value: 'gt',
-          name: 'Guatemala'
+          name: 'Guatemala',
         },
         {
           value: 'gw',
-          name: 'Guinea Bissau'
+          name: 'Guinea Bissau',
         },
         {
           value: 'gy',
-          name: 'Guyana'
+          name: 'Guyana',
         },
         {
           value: 'hn',
-          name: 'Honduras'
+          name: 'Honduras',
         },
         {
           value: 'hk',
-          name: 'Hong Kong'
+          name: 'Hong Kong',
         },
         {
           value: 'hu',
-          name: 'Hungary'
+          name: 'Hungary',
         },
         {
           value: 'is',
-          name: 'Iceland'
+          name: 'Iceland',
         },
         {
           value: 'in',
-          name: 'India'
+          name: 'India',
         },
         {
           value: 'id',
-          name: 'Indonesia'
+          name: 'Indonesia',
         },
         {
           value: 'ie',
-          name: 'Ireland'
+          name: 'Ireland',
         },
         {
           value: 'il',
-          name: 'Israel'
+          name: 'Israel',
         },
         {
           value: 'it',
-          name: 'Italy'
+          name: 'Italy',
         },
         {
           value: 'jm',
-          name: 'Jamaica'
+          name: 'Jamaica',
         },
         {
           value: 'jp',
-          name: 'Japan'
+          name: 'Japan',
         },
         {
           value: 'jo',
-          name: 'Jordan'
+          name: 'Jordan',
         },
         {
           value: 'kz',
-          name: 'Kazakhstan'
+          name: 'Kazakhstan',
         },
         {
           value: 'ke',
-          name: 'Kenya'
+          name: 'Kenya',
         },
         {
           value: 'kg',
-          name: 'Krygyzstan'
+          name: 'Krygyzstan',
         },
         {
           value: 'kw',
-          name: 'Kuwait'
+          name: 'Kuwait',
         },
         {
           value: 'la',
-          name: 'Laos'
+          name: 'Laos',
         },
         {
           value: 'lv',
-          name: 'Latvia'
+          name: 'Latvia',
         },
         {
           value: 'lb',
-          name: 'Lebanon'
+          name: 'Lebanon',
         },
         {
           value: 'lr',
-          name: 'Liberia'
+          name: 'Liberia',
         },
         {
           value: 'lt',
-          name: 'Lithuania'
+          name: 'Lithuania',
         },
         {
           value: 'lu',
-          name: 'Luxembourg'
+          name: 'Luxembourg',
         },
         {
           value: 'mo',
-          name: 'Macau'
+          name: 'Macau',
         },
         {
           value: 'mk',
-          name: 'Macedonia'
+          name: 'Macedonia',
         },
         {
           value: 'mg',
-          name: 'Madagascar'
+          name: 'Madagascar',
         },
         {
           value: 'mw',
-          name: 'Malawi'
+          name: 'Malawi',
         },
         {
           value: 'my',
-          name: 'Malaysia'
+          name: 'Malaysia',
         },
         {
           value: 'ml',
-          name: 'Mali'
+          name: 'Mali',
         },
         {
           value: 'mt',
-          name: 'Malta'
+          name: 'Malta',
         },
         {
           value: 'mr',
-          name: 'Mauritania'
+          name: 'Mauritania',
         },
         {
           value: 'mu',
-          name: 'Mauritius'
+          name: 'Mauritius',
         },
         {
           value: 'mx',
-          name: 'Mexico'
+          name: 'Mexico',
         },
         {
           value: 'md',
-          name: 'Moldova'
+          name: 'Moldova',
         },
         {
           value: 'mn',
-          name: 'Mongolia'
+          name: 'Mongolia',
         },
         {
           value: 'ms',
-          name: 'Montserrat'
+          name: 'Montserrat',
         },
         {
           value: 'mz',
-          name: 'Mozambique'
+          name: 'Mozambique',
         },
         {
           value: 'na',
-          name: 'Namibia'
+          name: 'Namibia',
         },
         {
           value: 'np',
-          name: 'Nepal'
+          name: 'Nepal',
         },
         {
           value: 'nl',
-          name: 'Netherlands'
+          name: 'Netherlands',
         },
         {
           value: 'nz',
-          name: 'New Zealand'
+          name: 'New Zealand',
         },
         {
           value: 'ni',
-          name: 'Nicaragua'
+          name: 'Nicaragua',
         },
         {
           value: 'ne',
-          name: 'Niger'
+          name: 'Niger',
         },
         {
           value: 'ng',
-          name: 'Nigeria'
+          name: 'Nigeria',
         },
         {
           value: 'no',
-          name: 'Norway'
+          name: 'Norway',
         },
         {
           value: 'om',
-          name: 'Oman'
+          name: 'Oman',
         },
         {
           value: 'pk',
-          name: 'Pakistan'
+          name: 'Pakistan',
         },
         {
           value: 'pw',
-          name: 'Palau'
+          name: 'Palau',
         },
         {
           value: 'pa',
-          name: 'Panama'
+          name: 'Panama',
         },
         {
           value: 'pg',
-          name: 'Papua New Guinea'
+          name: 'Papua New Guinea',
         },
         {
           value: 'py',
-          name: 'Paraguay'
+          name: 'Paraguay',
         },
         {
           value: 'pe',
-          name: 'Peru'
+          name: 'Peru',
         },
         {
           value: 'ph',
-          name: 'Philippines'
+          name: 'Philippines',
         },
         {
           value: 'pl',
-          name: 'Poland'
+          name: 'Poland',
         },
         {
           value: 'pt',
-          name: 'Portugal'
+          name: 'Portugal',
         },
         {
           value: 'qa',
-          name: 'Qatar'
+          name: 'Qatar',
         },
         {
           value: 'tt',
-          name: 'Republic of Trinidad and Tobago'
+          name: 'Republic of Trinidad and Tobago',
         },
         {
           value: 'ro',
-          name: 'Romania'
+          name: 'Romania',
         },
         {
           value: 'ru',
-          name: 'Russia'
+          name: 'Russia',
         },
         {
           value: 'kn',
-          name: 'Saint Kitts and Nevis'
+          name: 'Saint Kitts and Nevis',
         },
         {
           value: 'lc',
-          name: 'Saint Lucia'
+          name: 'Saint Lucia',
         },
         {
           value: 'vc',
-          name: 'Saint Vincent and the Grenadines'
+          name: 'Saint Vincent and the Grenadines',
         },
         {
           value: 'st',
-          name: 'Sao Tome e Principe'
+          name: 'Sao Tome e Principe',
         },
         {
           value: 'sa',
-          name: 'Saudi Arabia'
+          name: 'Saudi Arabia',
         },
         {
           value: 'sn',
-          name: 'Senegal'
+          name: 'Senegal',
         },
         {
           value: 'sc',
-          name: 'Seychelles'
+          name: 'Seychelles',
         },
         {
           value: 'sl',
-          name: 'Sierra Leone'
+          name: 'Sierra Leone',
         },
         {
           value: 'sg',
-          name: 'Singapore'
+          name: 'Singapore',
         },
         {
           value: 'sk',
-          name: 'Slovakia'
+          name: 'Slovakia',
         },
         {
           value: 'si',
-          name: 'Slovenia'
+          name: 'Slovenia',
         },
         {
           value: 'sb',
-          name: 'Soloman Islands'
+          name: 'Soloman Islands',
         },
         {
           value: 'za',
-          name: 'South Africa'
+          name: 'South Africa',
         },
         {
           value: 'kr',
-          name: 'South Korea'
+          name: 'South Korea',
         },
         {
           value: 'es',
-          name: 'Spain'
+          name: 'Spain',
         },
         {
           value: 'lk',
-          name: 'Sri Lanka'
+          name: 'Sri Lanka',
         },
         {
           value: 'sr',
-          name: 'Suriname'
+          name: 'Suriname',
         },
         {
           value: 'sz',
-          name: 'Swaziland'
+          name: 'Swaziland',
         },
         {
           value: 'se',
-          name: 'Sweden'
+          name: 'Sweden',
         },
         {
           value: 'ch',
-          name: 'Switzerland'
+          name: 'Switzerland',
         },
         {
           value: 'tw',
-          name: 'Taiwan'
+          name: 'Taiwan',
         },
         {
           value: 'tj',
-          name: 'Tajikistan'
+          name: 'Tajikistan',
         },
         {
           value: 'tz',
-          name: 'Tanzania'
+          name: 'Tanzania',
         },
         {
           value: 'th',
-          name: 'Thailand'
+          name: 'Thailand',
         },
         {
           value: 'tn',
-          name: 'Tunisia'
+          name: 'Tunisia',
         },
         {
           value: 'tr',
-          name: 'Turkey'
+          name: 'Turkey',
         },
         {
           value: 'tm',
-          name: 'Turkmenistan'
+          name: 'Turkmenistan',
         },
         {
           value: 'tc',
-          name: 'Turks and Caicos Islands'
+          name: 'Turks and Caicos Islands',
         },
         {
           value: 'ug',
-          name: 'Uganda'
+          name: 'Uganda',
         },
         {
           value: 'ua',
-          name: 'Ukraine'
+          name: 'Ukraine',
         },
         {
           value: 'ae',
-          name: 'United Arab Emirates'
+          name: 'United Arab Emirates',
         },
         {
           value: 'uy',
-          name: 'Uruguay'
+          name: 'Uruguay',
         },
         {
           value: 'uz',
-          name: 'Uzbekistan'
+          name: 'Uzbekistan',
         },
         {
           value: 've',
-          name: 'Venezuela'
+          name: 'Venezuela',
         },
         {
           value: 'vn',
-          name: 'Vietnam'
+          name: 'Vietnam',
         },
         {
           value: 'ye',
-          name: 'Yemen'
+          name: 'Yemen',
         },
         {
           value: 'zw',
-          name: 'Zimbabwe'
-        }
-      ]
+          name: 'Zimbabwe',
+        },
+      ],
     };
   },
   computed: {
@@ -645,8 +645,8 @@ export default {
       },
       set(value) {
         this.$store.commit('search/setCountry', value);
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>

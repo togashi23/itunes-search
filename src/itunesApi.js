@@ -4,7 +4,7 @@ const apiUrlSongs = 'lookup';
 
 const instance = axios.create({
   baseURL: 'https://itunes.apple.com/',
-  timeout: 3000
+  timeout: 3000,
 });
 
 export default {
@@ -12,36 +12,36 @@ export default {
     return instance
       .get(apiUrlAlbum, {
         params: {
-          limit: limit,
+          limit,
           entity: 'album',
-          offset: offset,
+          offset,
           hash: Math.random(),
-          ...params
-        }
+          ...params,
+        },
       })
       .then(success)
       .catch(failed);
   },
-  getSongs: params => {
+  getSongs: (params) => {
     return instance
       .get(apiUrlSongs, {
         params: {
           limit: 200,
           entity: 'song',
           hash: Math.random(),
-          ...params
-        }
+          ...params,
+        },
       })
       .then(success)
       .catch(failed);
-  }
+  },
 };
 
-const success = response => {
+const success = (response) => {
   return Promise.resolve(response.data);
 };
 
-const failed = error => {
+const failed = (error) => {
   console.error(error.message);
   return Promise.reject(new Error('取得に失敗しました'));
 };
