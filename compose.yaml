@@ -1,0 +1,21 @@
+services:
+  node:
+    # image: node:20-slim
+    build:
+      context: .docker
+      args:
+        UID: '${UID:-1000}'
+        GID: '${GID:-1000}'
+    tty: true
+    ports:
+      - '${WEB_PORT:-8080}:8080'
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+
+  # http:
+  #   image: httpd:2.4
+  #   ports:
+  #     - 80:80
+  #   volumes:
+  #     - ./dist:/usr/local/apache2/htdocs/
