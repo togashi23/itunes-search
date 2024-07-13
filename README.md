@@ -4,11 +4,15 @@
 
 ## Demo
 
-https://itunes-search.netlify.com/
+https://itunes-search.netlify.app
 
 ## Build Setup
 
 ``` bash
+# start docker container
+docker compose up -d
+docker compose exec node bash
+
 # install dependencies
 npm install
 
@@ -17,7 +21,4 @@ npm run dev
 
 # build for production with minification
 npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
