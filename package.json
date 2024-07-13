@@ -1,6 +1,6 @@
 {
   "name": "itunes-search",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "A search on iTunes Store",
   "author": "togashi23",
   "license": "MIT",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
-    "axios": "^0.19.2",
+    "axios": "^1.7.2",
     "bootstrap": "^4.6.2",
     "vue": "^2.7.16",
     "vue-router": "^3.6.5",

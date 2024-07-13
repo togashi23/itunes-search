@@ -31,7 +31,7 @@
         <li v-for="item in albumItem" :key="item.index" class="list-group-item d-flex justify-content-between">
           <div>
             <span class="text-muted">{{ item.trackNumber }}.</span>
-            {{ item.trackName }}
+            {{ item.trackCensoredName }}
             <small class="text-muted">{{ item.artistName }}</small>
           </div>
           <div class="text-muted">{{ item.trackTimeMillis | msTimeFormat }}</div>
@@ -85,7 +85,7 @@ export default {
         const row = [
           item.discNumber + '/' + item.discCount,
           item.trackNumber + '/' + item.trackCount,
-          item.trackName,
+          item.trackCensoredName,
           item.artistName,
         ];
         return row.join(delimiter);
