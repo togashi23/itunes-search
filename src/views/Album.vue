@@ -66,7 +66,7 @@ export default {
      */
     artWorkUrl: function (url, size) {
       if (url === undefined) return '';
-      if (size === 'full') size = '100000x100000-999';
+      if (size === 'full') size = '10000x10000-999';
       return url.replace(/100x100.*\.jpg/g, size + '.jpg');
     },
     /**
