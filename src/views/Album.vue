@@ -44,6 +44,7 @@
 <script>
 import Loading from '@/components/Loading.vue';
 import { mapState } from 'vuex';
+import { artWorkUrl, hideLoading } from '@/util/artwork';
 
 export default {
   name: 'Album',
@@ -57,24 +58,8 @@ export default {
     }
   },
   methods: {
-    /**
-     * 任意のサイズのアートワークURLを生成
-     *
-     * @param {string} url 100x100のアートワークURL
-     * @param {string} size 指定のアートワークサイズ(500x500, full)
-     * @return {string} アートワークのURL
-     */
-    artWorkUrl: function (url, size) {
-      if (url === undefined) return '';
-      if (size === 'full') size = '10000x10000-999';
-      return url.replace(/100x100.*\.jpg/g, size + '.jpg');
-    },
-    /**
-     * 画像のロードが完了したらダミー画像を除去
-     */
-    hideLoading: (event) => {
-      event.target.previousElementSibling.remove();
-    },
+    artWorkUrl,
+    hideLoading,
     /**
      * トラック情報をファイルに書き出し
      * `%discnumber%;%track%;%title%;%artist%`

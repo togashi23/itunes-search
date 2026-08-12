@@ -34,27 +34,13 @@
 
 <script>
 import { mapState } from 'vuex';
+import { artWorkUrl, hideLoading } from '@/util/artwork';
 
 export default {
   name: 'ResultCards',
   methods: {
-    /**
-     * 任意のサイズのアートワークURLを生成
-     *
-     * @param {string} url 100x100のアートワークURL
-     * @param {string} size 指定のアートワークサイズ(500x500, full)
-     * @return {string} アートワークのURL
-     */
-    artWorkUrl: function (url, size) {
-      if (size === 'full') size = '10000x10000-999';
-      return url.replace(/100x100.*\.jpg/g, size + '.jpg');
-    },
-    /**
-     * 画像のロードが完了したらダミー画像を除去
-     */
-    hideLoading: (event) => {
-      event.target.previousElementSibling.remove();
-    },
+    artWorkUrl,
+    hideLoading,
   },
   computed: {
     ...mapState({
