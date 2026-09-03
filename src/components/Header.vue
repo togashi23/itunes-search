@@ -1,7 +1,9 @@
 <template>
-  <nav class="navbar navbar-dark bg-primary justify-content-between">
-    <router-link :to="'/'" class="navbar-brand"> <i class="fab fa-itunes"></i> iTunes Search </router-link>
-    <span v-if="total" class="navbar-text text-white">{{ numberFormat(total) }}件</span>
+  <nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+      <router-link :to="'/'" class="navbar-brand"> <i class="fab fa-itunes"></i> iTunes Search </router-link>
+      <span v-if="total" class="navbar-text text-white">{{ numberFormat(total) }}件</span>
+    </div>
   </nav>
 </template>
 
