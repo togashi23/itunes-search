@@ -3,9 +3,9 @@
     <li v-for="item in itunesItem" :key="item.index" class="list-group-item d-flex justify-content-start">
       <div class="cover-img">
         <a :href="artWorkUrl(item.artworkUrl100, 'full')" target="_blank">
-          <img class="rounded float-left" src="@/assets/loading100x100.png" />
+          <img class="rounded float-start" src="@/assets/loading100x100.png" />
           <img
-            class="rounded float-left"
+            class="rounded float-start"
             :src="artWorkUrl(item.artworkUrl100, '100x100')"
             alt="artwork"
             @load="hideLoading"
@@ -18,7 +18,7 @@
           <router-link :to="'/album/' + item.collectionId">{{ item.collectionName }}</router-link>
         </h5>
         <p>{{ item.artistName }}</p>
-        <p>{{ item.primaryGenreName }} - {{ item.releaseDate | dateFormat }}</p>
+        <p>{{ item.primaryGenreName }} - {{ dateFormat(item.releaseDate) }}</p>
         <a :href="item.collectionViewUrl" target="_blank">iTunes Storeで開く</a>
       </div>
     </li>
@@ -26,19 +26,20 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from 'pinia';
+import { useSearchStore } from '@/store/search';
 import { artWorkUrl, hideLoading } from '@/util/artwork';
+import { dateFormat } from '@/util/filters';
 
 export default {
   name: 'ResultLists',
   methods: {
     artWorkUrl,
     hideLoading,
+    dateFormat,
   },
   computed: {
-    ...mapState({
-      itunesItem: (state) => state.search.itunesItem,
-    }),
+    ...mapState(useSearchStore, ['itunesItem']),
   },
 };
 </script>

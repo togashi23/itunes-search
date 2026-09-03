@@ -12,8 +12,8 @@ export default [
     files: ['**/*.{js,cjs,mjs,vue}'],
     noStyle: true,
   }),
-  // Vue (このプロジェクトは Vue 2 のため vue2 用プリセットを使う)
-  ...pluginVue.configs['flat/vue2-recommended'],
+  // Vue
+  ...pluginVue.configs['flat/recommended'],
   // Formatter
   prettier,
   {

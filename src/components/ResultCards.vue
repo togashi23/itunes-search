@@ -19,7 +19,7 @@
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">{{ item.primaryGenreName }}</li>
-          <li class="list-group-item">{{ item.releaseDate | dateFormat }}</li>
+          <li class="list-group-item">{{ dateFormat(item.releaseDate) }}</li>
         </ul>
         <div class="card-body">
           <a :href="item.collectionViewUrl" target="_blank" class="card-link">iTunes Storeで開く</a>
@@ -33,19 +33,20 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from 'pinia';
+import { useSearchStore } from '@/store/search';
 import { artWorkUrl, hideLoading } from '@/util/artwork';
+import { dateFormat } from '@/util/filters';
 
 export default {
   name: 'ResultCards',
   methods: {
     artWorkUrl,
     hideLoading,
+    dateFormat,
   },
   computed: {
-    ...mapState({
-      itunesItem: (state) => state.search.itunesItem,
-    }),
+    ...mapState(useSearchStore, ['itunesItem']),
   },
 };
 </script>
