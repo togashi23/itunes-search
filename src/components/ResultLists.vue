@@ -3,9 +3,9 @@
     <li v-for="item in itunesItem" :key="item.index" class="list-group-item d-flex justify-content-start">
       <div class="cover-img">
         <a :href="artWorkUrl(item.artworkUrl100, 'full')" target="_blank">
-          <img class="rounded float-left" src="@/assets/loading100x100.png" />
+          <img class="rounded float-start" src="@/assets/loading100x100.png" />
           <img
-            class="rounded float-left"
+            class="rounded float-start"
             :src="artWorkUrl(item.artworkUrl100, '100x100')"
             alt="artwork"
             @load="hideLoading"

@@ -13,7 +13,7 @@
 
       <!-- 表示方法選択 -->
       <div class="d-flex justify-content-end mb-3">
-        <div class="btn-group btn-group-toggle">
+        <div class="btn-group">
           <label
             class="btn btn-outline-primary"
             :class="[viewType === 'grid' ? 'active' : '']"
@@ -44,7 +44,7 @@
         <!-- 結果0件 -->
         <result-none-component v-else />
         <!-- 追加検索ボタン -->
-        <button v-show="isMore" type="button" class="btn btn-outline-primary btn-lg btn-block mb-3" @click="moreSearch">
+        <button v-show="isMore" type="button" class="btn btn-outline-primary btn-lg w-100 mb-3" @click="moreSearch">
           more
         </button>
       </template>

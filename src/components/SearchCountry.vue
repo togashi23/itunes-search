@@ -1,9 +1,7 @@
 <template>
   <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <label class="input-group-text" for="inputGroupSelect01">Country</label>
-    </div>
-    <select v-model="country" class="custom-select">
+    <label class="input-group-text" for="inputGroupSelect01">Country</label>
+    <select id="inputGroupSelect01" v-model="country" class="form-select">
       <option v-for="countly in countlyList" :key="countly.value" :value="countly.value">{{ countly.name }}</option>
     </select>
   </div>
