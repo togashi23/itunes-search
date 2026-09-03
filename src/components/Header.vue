@@ -9,7 +9,7 @@
 import { mapGetters } from 'vuex';
 
 export default {
-  name: 'Header',
+  name: 'HeaderComponent',
   computed: {
     ...mapGetters({
       total: 'search/total',

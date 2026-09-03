@@ -1,35 +1,36 @@
 {
   "name": "itunes-search",
-  "version": "1.6.4",
+  "version": "1.7.0",
   "description": "A search on iTunes Store",
   "author": "togashi23",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint --ext .js,.vue --cache src",
-    "lint:fix": "eslint --ext .js,.vue --fix --cache src",
-    "lint:check": "eslint --ext .js,.vue src --fix-dry-run",
+    "lint": "eslint --cache src",
+    "lint:fix": "eslint --fix --cache src",
+    "lint:check": "eslint src --fix-dry-run",
     "format": "prettier --write --cache .",
     "format:check": "prettier --check ."
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
-    "axios": "^1.19.0",
+    "axios": "^1.20.0",
     "bootstrap": "^4.6.2",
     "vue": "^2.7.16",
     "vue-router": "^3.6.5",
     "vuex": "^3.6.2"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.0",
     "@vitejs/plugin-vue2": "^2.3.4",
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^9.1.2",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-vue": "^9.33.0",
+    "eslint": "^9.39.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-vue": "^10.10.0",
+    "neostandard": "^0.13.0",
     "prettier": "^3.9.6",
-    "sass": "~1.64.2",
-    "vite": "^5.4.21"
+    "sass": "^1.103.1",
+    "vite": "^7.3.6"
   },
   "engines": {
     "node": ">= 20.0.0",
