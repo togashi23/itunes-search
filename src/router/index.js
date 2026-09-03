@@ -1,13 +1,9 @@
-import Vue from 'vue/dist/vue.esm';
-import Router from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import Top from '@/views/Top.vue';
 import Album from '@/views/Album.vue';
 
-Vue.use(Router);
-
-export default new Router({
-  // mode: 'history',
-  // base: 'itunes',
+export default createRouter({
+  history: createWebHashHistory(),
   routes: [
     {
       path: '/',
