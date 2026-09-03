@@ -5,6 +5,15 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   base: '',
   plugins: [vue()],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // Bootstrap 4 が依存する古い Sass 記法の非推奨警告を抑制する
+        quietDeps: true,
+        silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'if-function', 'abs-percent'],
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
