@@ -8,6 +8,9 @@
 </template>
 
 <script>
+import { mapWritableState } from 'pinia';
+import { useSearchStore } from '@/store/search';
+
 export default {
   name: 'SearchTerm',
   directives: {
@@ -19,14 +22,7 @@ export default {
   },
   emits: ['search'],
   computed: {
-    term: {
-      get() {
-        return this.$store.state.search.term;
-      },
-      set(value) {
-        this.$store.commit('search/setTerm', value);
-      },
-    },
+    ...mapWritableState(useSearchStore, ['term']),
   },
   methods: {
     search: function () {

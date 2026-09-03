@@ -33,7 +33,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from 'pinia';
+import { useSearchStore } from '@/store/search';
 import { artWorkUrl, hideLoading } from '@/util/artwork';
 
 export default {
@@ -43,9 +44,7 @@ export default {
     hideLoading,
   },
   computed: {
-    ...mapState({
-      itunesItem: (state) => state.search.itunesItem,
-    }),
+    ...mapState(useSearchStore, ['itunesItem']),
   },
 };
 </script>

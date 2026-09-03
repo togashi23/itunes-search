@@ -53,13 +53,15 @@
 </template>
 
 <script>
+import { mapState, mapStores } from 'pinia';
 import SearchCountry from '@/components/SearchCountry.vue';
 import SearchTerm from '@/components/SearchTerm.vue';
 import ResultCards from '@/components/ResultCards.vue';
 import ResultLists from '@/components/ResultLists.vue';
 import ResultNone from '@/components/ResultNone.vue';
 import Loading from '@/components/Loading.vue';
-import { mapState, mapGetters } from 'vuex';
+import { useSearchStore } from '@/store/search';
+import { useStateStore } from '@/store/state';
 
 export default {
   name: 'Top',
@@ -73,7 +75,7 @@ export default {
   },
   mounted: function () {
     if (this.$route.query.term !== undefined && this.$route.query.term !== '') {
-      this.$store.commit('search/setTerm', this.$route.query.term);
+      this.searchStore.term = this.$route.query.term;
       this.search();
     }
   },
@@ -82,14 +84,14 @@ export default {
      * 検索メソッド
      */
     search() {
-      this.$router.push({ query: { term: this.$store.state.search.term } });
-      this.$store.dispatch('search/search');
+      this.$router.push({ query: { term: this.searchStore.term } });
+      this.searchStore.search();
     },
     /**
      * 追加検索
      */
     moreSearch() {
-      this.$store.dispatch('search/moreSearch');
+      this.searchStore.moreSearch();
     },
     /**
      * 結果表示タイプを設定
@@ -97,19 +99,13 @@ export default {
      * @param {string} view 表示タイプ
      */
     setView(view) {
-      this.$store.commit('state/setViewType', view);
+      this.stateStore.viewType = view;
     },
   },
   computed: {
-    ...mapState({
-      viewType: (state) => state.state.viewType,
-      loading: (state) => state.state.loading,
-      itunesItem: (state) => state.search.itunesItem,
-      isMore: (state) => state.search.isMore,
-    }),
-    ...mapGetters({
-      total: 'search/total',
-    }),
+    ...mapStores(useSearchStore, useStateStore),
+    ...mapState(useStateStore, ['viewType', 'loading']),
+    ...mapState(useSearchStore, ['itunesItem', 'isMore', 'total']),
   },
 };
 </script>

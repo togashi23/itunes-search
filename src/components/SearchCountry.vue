@@ -10,6 +10,9 @@
 </template>
 
 <script>
+import { mapWritableState } from 'pinia';
+import { useSearchStore } from '@/store/search';
+
 export default {
   name: 'SearchCountry',
   data: function () {
@@ -639,14 +642,7 @@ export default {
     };
   },
   computed: {
-    country: {
-      get() {
-        return this.$store.state.search.country;
-      },
-      set(value) {
-        this.$store.commit('search/setCountry', value);
-      },
-    },
+    ...mapWritableState(useSearchStore, ['country']),
   },
 };
 </script>

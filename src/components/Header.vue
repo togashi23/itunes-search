@@ -6,14 +6,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState } from 'pinia';
+import { useSearchStore } from '@/store/search';
 
 export default {
   name: 'HeaderComponent',
   computed: {
-    ...mapGetters({
-      total: 'search/total',
-    }),
+    ...mapState(useSearchStore, ['total']),
   },
 };
 </script>

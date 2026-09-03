@@ -42,8 +42,10 @@
 </template>
 
 <script>
+import { mapState, mapStores } from 'pinia';
 import Loading from '@/components/Loading.vue';
-import { mapState } from 'vuex';
+import { useSearchStore } from '@/store/search';
+import { useStateStore } from '@/store/state';
 import { artWorkUrl, hideLoading } from '@/util/artwork';
 
 export default {
@@ -53,8 +55,8 @@ export default {
   },
   mounted: function () {
     if (this.$route.params.id !== undefined && this.$route.params.id !== '') {
-      this.$store.commit('search/setCollectionId', this.$route.params.id);
-      this.$store.dispatch('search/searchAlbum');
+      this.searchStore.collectionId = this.$route.params.id;
+      this.searchStore.searchAlbum();
     }
   },
   methods: {
@@ -89,11 +91,9 @@ export default {
     },
   },
   computed: {
-    ...mapState({
-      loading: (state) => state.state.loading,
-      selectAlbum: (state) => state.search.selectAlbum,
-      albumItem: (state) => state.search.albumItem,
-    }),
+    ...mapStores(useSearchStore),
+    ...mapState(useStateStore, ['loading']),
+    ...mapState(useSearchStore, ['selectAlbum', 'albumItem']),
   },
 };
 </script>
