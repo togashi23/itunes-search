@@ -18,7 +18,7 @@
           <router-link :to="'/album/' + item.collectionId">{{ item.collectionName }}</router-link>
         </h5>
         <p>{{ item.artistName }}</p>
-        <p>{{ item.primaryGenreName }} - {{ item.releaseDate | dateFormat }}</p>
+        <p>{{ item.primaryGenreName }} - {{ dateFormat(item.releaseDate) }}</p>
         <a :href="item.collectionViewUrl" target="_blank">iTunes Storeで開く</a>
       </div>
     </li>
@@ -29,12 +29,14 @@
 import { mapState } from 'pinia';
 import { useSearchStore } from '@/store/search';
 import { artWorkUrl, hideLoading } from '@/util/artwork';
+import { dateFormat } from '@/util/filters';
 
 export default {
   name: 'ResultLists',
   methods: {
     artWorkUrl,
     hideLoading,
+    dateFormat,
   },
   computed: {
     ...mapState(useSearchStore, ['itunesItem']),

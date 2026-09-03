@@ -21,7 +21,7 @@
           <h4>{{ selectAlbum.collectionName }}</h4>
           <div class="mb-2">{{ selectAlbum.artistName }}</div>
           <div class="mb-2">{{ selectAlbum.primaryGenreName }}</div>
-          <div class="mb-2">{{ selectAlbum.releaseDate | dateFormat }}</div>
+          <div class="mb-2">{{ dateFormat(selectAlbum.releaseDate) }}</div>
           <div class="mb-2"><button class="btn btn-primary" @click="exportFile">Export</button></div>
         </div>
       </div>
@@ -34,7 +34,7 @@
             {{ item.trackCensoredName }}
             <small class="text-muted">{{ item.artistName }}</small>
           </div>
-          <div class="text-muted">{{ item.trackTimeMillis | msTimeFormat }}</div>
+          <div class="text-muted">{{ msTimeFormat(item.trackTimeMillis) }}</div>
         </li>
       </ul>
     </div>
@@ -47,6 +47,7 @@ import Loading from '@/components/Loading.vue';
 import { useSearchStore } from '@/store/search';
 import { useStateStore } from '@/store/state';
 import { artWorkUrl, hideLoading } from '@/util/artwork';
+import { dateFormat, msTimeFormat } from '@/util/filters';
 
 export default {
   name: 'Album',
@@ -62,6 +63,8 @@ export default {
   methods: {
     artWorkUrl,
     hideLoading,
+    dateFormat,
+    msTimeFormat,
     /**
      * トラック情報をファイルに書き出し
      * `%discnumber%;%track%;%title%;%artist%`
