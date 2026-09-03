@@ -21,7 +21,7 @@
           <h4>{{ selectAlbum.collectionName }}</h4>
           <div class="mb-2">{{ selectAlbum.artistName }}</div>
           <div class="mb-2">{{ selectAlbum.primaryGenreName }}</div>
-          <div class="mb-2">{{ selectAlbum.releaseDate | dateFormat }}</div>
+          <div class="mb-2">{{ dateFormat(selectAlbum.releaseDate) }}</div>
           <div class="mb-2"><button class="btn btn-primary" @click="exportFile">Export</button></div>
         </div>
       </div>
@@ -34,7 +34,7 @@
             {{ item.trackCensoredName }}
             <small class="text-muted">{{ item.artistName }}</small>
           </div>
-          <div class="text-muted">{{ item.trackTimeMillis | msTimeFormat }}</div>
+          <div class="text-muted">{{ msTimeFormat(item.trackTimeMillis) }}</div>
         </li>
       </ul>
     </div>
@@ -42,9 +42,12 @@
 </template>
 
 <script>
+import { mapState, mapStores } from 'pinia';
 import Loading from '@/components/Loading.vue';
-import { mapState } from 'vuex';
+import { useSearchStore } from '@/store/search';
+import { useStateStore } from '@/store/state';
 import { artWorkUrl, hideLoading } from '@/util/artwork';
+import { dateFormat, msTimeFormat } from '@/util/filters';
 
 export default {
   name: 'Album',
@@ -53,13 +56,15 @@ export default {
   },
   mounted: function () {
     if (this.$route.params.id !== undefined && this.$route.params.id !== '') {
-      this.$store.commit('search/setCollectionId', this.$route.params.id);
-      this.$store.dispatch('search/searchAlbum');
+      this.searchStore.collectionId = this.$route.params.id;
+      this.searchStore.searchAlbum();
     }
   },
   methods: {
     artWorkUrl,
     hideLoading,
+    dateFormat,
+    msTimeFormat,
     /**
      * トラック情報をファイルに書き出し
      * `%discnumber%;%track%;%title%;%artist%`
@@ -89,11 +94,9 @@ export default {
     },
   },
   computed: {
-    ...mapState({
-      loading: (state) => state.state.loading,
-      selectAlbum: (state) => state.search.selectAlbum,
-      albumItem: (state) => state.search.albumItem,
-    }),
+    ...mapStores(useSearchStore),
+    ...mapState(useStateStore, ['loading']),
+    ...mapState(useSearchStore, ['selectAlbum', 'albumItem']),
   },
 };
 </script>

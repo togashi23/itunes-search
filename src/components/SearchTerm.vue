@@ -1,31 +1,26 @@
 <template>
   <div class="input-group mb-3">
-    <input v-model="term" v-focus type="text" class="form-control" @keydown.13="search" />
-    <div class="input-group-append">
-      <button class="btn btn-outline-primary" type="button" @click.prevent="search">検索</button>
-    </div>
+    <input v-model="term" v-focus type="text" class="form-control" @keydown.enter="search" />
+    <button class="btn btn-outline-primary" type="button" @click.prevent="search">検索</button>
   </div>
 </template>
 
 <script>
+import { mapWritableState } from 'pinia';
+import { useSearchStore } from '@/store/search';
+
 export default {
   name: 'SearchTerm',
   directives: {
     focus: {
-      inserted: function (el) {
+      mounted: function (el) {
         el.focus();
       },
     },
   },
+  emits: ['search'],
   computed: {
-    term: {
-      get() {
-        return this.$store.state.search.term;
-      },
-      set(value) {
-        this.$store.commit('search/setTerm', value);
-      },
-    },
+    ...mapWritableState(useSearchStore, ['term']),
   },
   methods: {
     search: function () {

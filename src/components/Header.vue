@@ -1,19 +1,24 @@
 <template>
-  <nav class="navbar navbar-dark bg-primary justify-content-between">
-    <router-link :to="'/'" class="navbar-brand"> <i class="fab fa-itunes"></i> iTunes Search </router-link>
-    <span v-if="total" class="navbar-text text-white">{{ total | numberFormat }}件</span>
+  <nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+      <router-link :to="'/'" class="navbar-brand"> <i class="fab fa-itunes"></i> iTunes Search </router-link>
+      <span v-if="total" class="navbar-text text-white">{{ numberFormat(total) }}件</span>
+    </div>
   </nav>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState } from 'pinia';
+import { useSearchStore } from '@/store/search';
+import { numberFormat } from '@/util/filters';
 
 export default {
   name: 'HeaderComponent',
   computed: {
-    ...mapGetters({
-      total: 'search/total',
-    }),
+    ...mapState(useSearchStore, ['total']),
+  },
+  methods: {
+    numberFormat,
   },
 };
 </script>

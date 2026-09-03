@@ -1,5 +1,5 @@
 import path from 'path';
-import vue from '@vitejs/plugin-vue2';
+import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
@@ -8,16 +8,15 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        // Bootstrap 4 が依存する古い Sass 記法の非推奨警告を抑制する
-        quietDeps: true,
-        silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'if-function', 'abs-percent'],
+        // Bootstrap が依存する古い Sass 記法の非推奨警告を抑制する
+        silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'if-function'],
       },
     },
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-      './src/': path.resolve(__dirname, './src'),
+      '@': path.resolve(import.meta.dirname, './src'),
+      './src/': path.resolve(import.meta.dirname, './src'),
     },
   },
   server: {
