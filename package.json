@@ -1,6 +1,6 @@
 {
   "name": "itunes-search",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A search on iTunes Store",
   "author": "togashi23",
   "license": "MIT",
@@ -17,19 +17,19 @@
     "@fortawesome/fontawesome-free": "^7.3.1",
     "axios": "^1.20.0",
     "bootstrap": "^5.3.8",
-    "pinia": "^4.0.3",
-    "vue": "^3.5.42",
-    "vue-router": "^5.3.1"
+    "pinia": "^4.1.0",
+    "vue": "^3.5.44",
+    "vue-router": "^5.4.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@vitejs/plugin-vue": "^6.0.8",
-    "eslint": "^10.9.1",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "eslint": "^10.13.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-vue": "^10.10.0",
-    "neostandard": "0.14.0-next.1",
-    "prettier": "^3.9.6",
-    "sass": "^1.103.1",
+    "eslint-plugin-vue": "^10.11.1",
+    "neostandard": "^0.14.1",
+    "prettier": "^3.9.10",
+    "sass": "^1.106.1",
     "vite": "^8.2.2"
   },
   "engines": {
